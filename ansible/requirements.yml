@@ -6,7 +6,5 @@ collections:
   - name: community.general
   - name: community.windows
     version: 1.11.0
-  - name: chocolatey.chocolatey
-# - name: goad.windows
-#   type: dir
-#   source: ./collections/goad/windows
+  # - name: community.mysql
+  # - name: ansible.posix
