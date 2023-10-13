@@ -40,7 +40,7 @@ force_dns_server=no
 
 ; winrm connection (windows)
 ansible_user=ansible
-ansible_password=AFMZCQAaukS5Wt44hbUF
+ansible_password=YourSecretPassword
 ansible_connection=winrm
 ansible_winrm_server_cert_validation=ignore
 ansible_winrm_operation_timeout_sec=400
