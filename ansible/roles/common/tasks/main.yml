@@ -1,7 +1,7 @@
 - name: "Force a DNS on the adapter {{nat_adapter}}"
   ansible.windows.win_dns_client:
     adapter_names: "{{nat_adapter}}"
-    dns_servers: 
+    dns_servers:
       - "{{dns_server}}"
       - "{{hostvars[dns_domain].ansible_host}}"
   when: force_dns_server == "yes"
@@ -34,7 +34,7 @@
 - name: Windows | Enable Remote Desktop
   win_dsc:
     resource_name: RemoteDesktopAdmin
-    IsSingleInstance : 'yes'
+    IsSingleInstance: "yes"
     Ensure: present
     UserAuthentication: Secure
 
