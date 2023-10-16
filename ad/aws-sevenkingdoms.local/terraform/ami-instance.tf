@@ -123,3 +123,41 @@ resource "aws_instance" "wg" {
   ]
 }
 
+# Define an Elastic IP
+resource "aws_eip" "wg_eip" {
+  instance = aws_instance.wg.id
+
+  tags = {
+    Name = "GOAD-WG-EIP"
+  }
+}
+
+# Associate the Elastic IP with your EC2 instance
+# NOTE: The aws_eip.wg_eip takes care of this association for you.
+# The below association is typically redundant if you've specified the instance ID in the EIP definition, but included for clarity.
+resource "aws_eip_association" "wg_eip_association" {
+  instance_id   = aws_instance.wg.id
+  allocation_id = aws_eip.wg_eip.id
+}
+
+# Our Admin server
+resource "aws_instance" "admin" {
+  ami                         = data.aws_ami.ubuntu-server-22.image_id
+  instance_type               = "t2.micro"
+  key_name                    = aws_key_pair.terraformkey.key_name
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.lab-vpc-subnet-1.id
+  private_ip                  = var.ADMIN_IP
+  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
+  user_data                   = file("${path.module}/scripts/setup_ansible.sh")
+
+  tags = {
+    Workspace = "${terraform.workspace}"
+    Name      = "GOAD-ADMIN"
+  }
+
+  vpc_security_group_ids = [
+    aws_security_group.lab-sg-wireguard.id,
+  ]
+}
+
