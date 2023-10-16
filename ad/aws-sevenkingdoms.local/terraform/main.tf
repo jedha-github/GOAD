@@ -43,55 +43,55 @@ resource "aws_subnet" "lab-vpc-subnet-1" {
 }
 
 # Set DHCP options for delivering things like DNS servers
-# resource "aws_vpc_dhcp_options" "lab-dhcp" {
-#   domain_name          = "sevenkingdoms.local"
-#   domain_name_servers  = [var.DC01_IP, var.PUBLIC_DNS]
-#   ntp_servers          = [var.DC01_IP]
-#   netbios_name_servers = [var.DC01_IP]
-#   netbios_node_type    = 2
+resource "aws_vpc_dhcp_options" "lab-dhcp" {
+  domain_name          = "sevenkingdoms.local"
+  domain_name_servers  = [var.DC01_IP, var.PUBLIC_DNS]
+  ntp_servers          = [var.DC01_IP]
+  netbios_name_servers = [var.DC01_IP]
+  netbios_node_type    = 2
 
-#   tags = {
-#     Name = "GOAD DHCP sevenkingdoms"
-#   }
-# }
+  tags = {
+    Name = "GOAD DHCP sevenkingdoms"
+  }
+}
 
 # Associate our DHCP configuration with our VPC
-# resource "aws_vpc_dhcp_options_association" "lab-dhcp-assoc" {
-#   vpc_id          = aws_vpc.lab-vpc.id
-#   dhcp_options_id = aws_vpc_dhcp_options.lab-dhcp.id
+resource "aws_vpc_dhcp_options_association" "lab-dhcp-assoc" {
+  vpc_id          = aws_vpc.lab-vpc.id
+  dhcp_options_id = aws_vpc_dhcp_options.lab-dhcp.id
+}
+
+# output "dc01" {
+#   value       = aws_instance.dc01.public_ip
+#   description = "Public IP of DC01"
 # }
 
-output "timestamp" {
-  value = formatdate("hh:mm", timestamp())
-}
+# output "dc02" {
+#   value       = aws_instance.dc02.public_ip
+#   description = "Public IP of DC02"
+# }
 
-output "dc01" {
-  value       = aws_instance.dc01.public_ip
-  description = "Public IP of DC01"
-}
+# output "srv02" {
+#   value       = aws_instance.srv02.public_ip
+#   description = "Public IP of SRV02"
+# }
 
-output "dc02" {
-  value       = aws_instance.dc02.public_ip
-  description = "Public IP of DC02"
-}
+# output "dc03" {
+#   value       = aws_instance.dc03.public_ip
+#   description = "Public IP of DC03"
+# }
 
-output "srv02" {
-  value       = aws_instance.srv02.public_ip
-  description = "Public IP of SRV02"
-}
-
-output "dc03" {
-  value       = aws_instance.dc03.public_ip
-  description = "Public IP of DC03"
-}
-
-output "srv03" {
-  value       = aws_instance.srv03.public_ip
-  description = "Public IP of SRV03"
-}
+# output "srv03" {
+#   value       = aws_instance.srv03.public_ip
+#   description = "Public IP of SRV03"
+# }
 
 output "wg" {
-  value       = aws_instance.wg.public_ip
+  value       = aws_eip.wg_eip.public_ip
   description = "Public IP of WG"
 }
 
+output "admin" {
+  value       = aws_instance.admin.public_ip
+  description = "Public IP of Admin"
+}

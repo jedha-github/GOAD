@@ -11,12 +11,12 @@ resource "aws_security_group" "lab-sg-1" {
   }
 
   # Allow management from our IP
-  ingress {
-    protocol    = "-1"
-    cidr_blocks = var.MANAGEMENT_IPS
-    from_port   = 0
-    to_port     = 0
-  }
+  # ingress {
+  #   protocol    = "-1"
+  #   cidr_blocks = var.MANAGEMENT_IPS
+  #   from_port   = 0
+  #   to_port     = 0
+  # }
 
   ingress {
     protocol    = "tcp"
@@ -62,12 +62,12 @@ resource "aws_security_group" "lab-sg-2" {
   }
 
   # Allow management from our IP
-  ingress {
-    protocol    = "-1"
-    cidr_blocks = var.MANAGEMENT_IPS
-    from_port   = 0
-    to_port     = 0
-  }
+  # ingress {
+  #   protocol    = "-1"
+  #   cidr_blocks = var.MANAGEMENT_IPS
+  #   from_port   = 0
+  #   to_port     = 0
+  # }
 
   ingress {
     protocol    = "tcp"
@@ -113,12 +113,12 @@ resource "aws_security_group" "lab-sg-3" {
   }
 
   # Allow management from our IP
-  ingress {
-    protocol    = "-1"
-    cidr_blocks = var.MANAGEMENT_IPS
-    from_port   = 0
-    to_port     = 0
-  }
+  # ingress {
+  #   protocol    = "-1"
+  #   cidr_blocks = var.MANAGEMENT_IPS
+  #   from_port   = 0
+  #   to_port     = 0
+  # }
 
   ingress {
     protocol    = "tcp"
