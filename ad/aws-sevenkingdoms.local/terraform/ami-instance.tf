@@ -6,7 +6,6 @@ resource "aws_instance" "dc01" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.DC01_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = file("${path.module}/scripts/ansibleuserdata.ps1")
 
   tags = {
@@ -28,7 +27,6 @@ resource "aws_instance" "dc02" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.DC02_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = file("${path.module}/scripts/ansibleuserdata.ps1")
 
   tags = {
@@ -50,7 +48,6 @@ resource "aws_instance" "srv02" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.SRV02_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = file("${path.module}/scripts/ansibleuserdata.ps1")
 
   tags = {
@@ -72,7 +69,6 @@ resource "aws_instance" "dc03" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.DC03_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = file("${path.module}/scripts/ansibleuserdata.ps1")
 
   tags = {
@@ -94,7 +90,6 @@ resource "aws_instance" "srv03" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.SRV03_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
   user_data                   = file("${path.module}/scripts/ansibleuserdata.ps1")
 
   tags = {
@@ -116,7 +111,6 @@ resource "aws_instance" "wg" {
   key_name                    = aws_key_pair.terraformkey.key_name
   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
   private_ip                  = var.WG_IP
-  iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
 
   tags = {
     Workspace = "${terraform.workspace}"
