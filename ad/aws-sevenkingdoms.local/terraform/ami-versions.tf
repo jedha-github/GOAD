@@ -1,4 +1,4 @@
-data "aws_ami" "windows-server-2019" {
+data "aws_ami" "windows_server_2019" {
   most_recent = true
   owners      = ["amazon"]
 
@@ -8,7 +8,7 @@ data "aws_ami" "windows-server-2019" {
   }
 }
 
-data "aws_ami" "windows-server-2016" {
+data "aws_ami" "windows_server_2016" {
   most_recent = true
   owners      = ["amazon"]
 
@@ -18,7 +18,7 @@ data "aws_ami" "windows-server-2016" {
   }
 }
 
-data "aws_ami" "ubuntu-server-22" {
+data "aws_ami" "ubuntu_server_22" {
   most_recent = true
   owners      = ["amazon"]
 
