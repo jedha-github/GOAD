@@ -16,6 +16,7 @@ resource "aws_instance" "dc01" {
 
   vpc_security_group_ids = [
     aws_security_group.goad_sg_private.id,
+    aws_security_group.goad_sg_admins.id,
   ]
 }
 
@@ -37,6 +38,7 @@ resource "aws_instance" "dc02" {
 
   vpc_security_group_ids = [
     aws_security_group.goad_sg_private.id,
+    aws_security_group.goad_sg_admins.id,
   ]
 }
 
@@ -58,6 +60,7 @@ resource "aws_instance" "srv02" {
 
   vpc_security_group_ids = [
     aws_security_group.goad_sg_private.id,
+    aws_security_group.goad_sg_admins.id,
   ]
 }
 
@@ -79,6 +82,7 @@ resource "aws_instance" "dc03" {
 
   vpc_security_group_ids = [
     aws_security_group.goad_sg_private.id,
+    aws_security_group.goad_sg_admins.id,
   ]
 }
 
@@ -100,6 +104,7 @@ resource "aws_instance" "srv03" {
 
   vpc_security_group_ids = [
     aws_security_group.goad_sg_private.id,
+    aws_security_group.goad_sg_admins.id,
   ]
 }
 
@@ -140,25 +145,3 @@ resource "aws_eip_association" "wg_eip_association" {
   instance_id   = aws_instance.wg.id
   allocation_id = aws_eip.wg_eip.id
 }
-
-# Our Admin server
-# resource "aws_instance" "admin" {
-#   associate_public_ip_address = true
-#   ami                         = data.aws_ami.ubuntu_server_22.image_id
-#   instance_type               = "t2.micro"
-#   key_name                    = aws_key_pair.terraformkey.key_name
-#   subnet_id                   = aws_subnet.goad_vpc_subnet_private.id
-#   private_ip                  = var.ADMIN_IP
-#   iam_instance_profile        = aws_iam_instance_profile.instance_profile.id
-#   user_data                   = file("${path.module}/scripts/setup_ansible.sh")
-
-#   tags = {
-#     Workspace = "${terraform.workspace}"
-#     Name      = "GOAD-ADMIN"
-#   }
-
-#   vpc_security_group_ids = [
-#     aws_security_group.goad_sg_admins.id,
-#   ]
-# }
-

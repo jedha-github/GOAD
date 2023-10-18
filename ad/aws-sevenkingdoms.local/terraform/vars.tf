@@ -50,7 +50,8 @@ variable "PUBLIC_DNS" {
   default = "9.9.9.9"
 }
 
-# variable "MANAGEMENT_IPS" {
-#   # Add in the public IP Address you will be hitting the cloud from, for example the public IP of your home address or VPN
-#   default = ["141.255.129.80/32"]
-# }
+variable "MANAGEMENT_IPS" {
+  # Add in the public IP Address you will be hitting the cloud from, for
+  # example the public IP of your home address or VPN
+  default = ["255.255.255.255/32"]
+}

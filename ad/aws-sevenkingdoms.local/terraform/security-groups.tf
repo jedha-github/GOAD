@@ -57,23 +57,33 @@ resource "aws_security_group" "goad_sg_admins" {
   vpc_id = aws_vpc.goad_vpc.id
   name   = "goad_sg_admins"
 
+  # Used for SSH
   ingress {
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.MANAGEMENT_IPS
     from_port   = 22
     to_port     = 22
   }
 
-  egress {
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 0
-    to_port     = 0
+  # Used for Ansible
+  ingress {
+    protocol    = "tcp"
+    cidr_blocks = var.MANAGEMENT_IPS
+    from_port   = 5985
+    to_port     = 5986
+  }
+
+  # Used for RDP
+  ingress {
+    protocol    = "tcp"
+    cidr_blocks = var.MANAGEMENT_IPS
+    from_port   = 3389
+    to_port     = 3389
   }
 
   egress {
     protocol    = "-1"
-    cidr_blocks = [var.SUBNET1_CIDR]
+    cidr_blocks = ["0.0.0.0/0"]
     from_port   = 0
     to_port     = 0
   }
