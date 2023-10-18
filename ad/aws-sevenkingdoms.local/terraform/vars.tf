@@ -42,10 +42,6 @@ variable "WG_IP" {
   default = "192.168.56.40"
 }
 
-variable "ADMIN_IP" {
-  default = "192.168.56.50"
-}
-
 variable "PUBLIC_DNS" {
   default = "9.9.9.9"
 }
