@@ -106,8 +106,12 @@ Then, in the `ansible` directory execute the playbooks one by one (it is importa
 ```bash
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory build.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-servers.yml
+$ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-parent_domain.yml
+$ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-child_domain.yml
+$ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-members.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-trusts.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-data.yml
+$ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-gmsa.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory laps.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory ad-relations.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory adcs.yml
@@ -118,6 +122,7 @@ $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory --limit srv02 serv
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory --limit srv03 servers.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory security.yml
 $ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory vulnerabilities.yml
+$ ansible-playbook -i ../ad/aws-sevenkingdoms.local/inventory reboot.yml
 ```
 
 > If you have an error on one playbook, you can try to run it again. It seems to solve quite a lot of issues.
