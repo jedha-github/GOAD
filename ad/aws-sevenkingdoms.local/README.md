@@ -76,7 +76,7 @@ $ terraform apply
 1. We need to update the `inventory` file with the IP addresses of the instances. Run this command from the `ad/aws-sevenkingdoms.local/terraform` directory:
 
 ```bash
-terraform output | awk -F ' = ' '{gsub(/"/, "", $2); print $1" "$2}' | while read -r key ip; do sed -i.bak "s/\($key ansible_host=\)[^ ]*/\1$ip/" ../inventory.template; mv ../inventory.template.bak ../inventory; done
+cp ../inventory.template ../inventory && terraform output | awk -F ' = ' '{gsub(/"/, "", $2); print $1" "$2}' | while read -r key ip; do sed -i.bak "s/\($key ansible_host=\)[^ ]*/\1$ip/" ../inventory; done && mv ../inventory.bak ../inventory
 ```
 
 2. Also, update the following line with your password (you can retrieve it in `ad/aws-sevenkingdoms.local/terraform/scripts/ansibleuserdata.ps1`):
@@ -143,4 +143,4 @@ objc[6387]: +[__NSCFConstantString initialize] may have been in progress in anot
 objc[6387]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. We cannot safely call it or ignore it in the fork() child process. Crashing instead. Set a breakpoint on objc_initializeAfterForkError to debug.
 ```
 
-Just add `env no_proxy='*'` at the begining of each command.
+Just add `env no_proxy='*'` at the begining of each command or `export no_proxy='*'` for your shell session.
