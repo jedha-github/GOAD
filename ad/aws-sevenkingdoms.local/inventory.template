@@ -158,6 +158,14 @@ dc03
 srv02
 srv03
 
+[laps_dc]
+dc03
+
+[laps_server]
+srv03
+
+[laps_workstation]
+
 ; allow computer update
 ; usage : update.yml
 [update]
